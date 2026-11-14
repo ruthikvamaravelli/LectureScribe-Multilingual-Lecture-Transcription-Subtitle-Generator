@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LectureScribe | Speech to Text</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="eyebrow">AUTOMATIC SPEECH RECOGNITION</div>
+      <h1>Lecture<span>Scribe</span></h1>
+      <p>Turn classroom lectures, seminars and audio recordings into editable transcripts and subtitles.</p>
+      <div class="student">V. Ruthik <b>•</b> RA2311003050010</div>
+    </header>
+
+    <section class="panel">
+      <div class="panel-head"><div><h2>Transcribe audio</h2><p>Upload an audio file or record directly from your microphone.</p></div><span class="pill">Whisper ASR</span></div>
+      <div class="dropzone" id="dropzone">
+        <div class="upload-icon">↑</div>
+        <strong>Choose an audio file</strong>
+        <p>WAV, MP3, M4A, OGG, WEBM or MP4 · up to 100 MB</p>
+        <input type="file" id="audioFile" accept="audio/*,video/mp4">
+        <label for="audioFile" class="button secondary">Browse files</label>
+        <div id="fileName" class="muted">No file selected</div>
+      </div>
+      <div class="or">OR RECORD LIVE</div>
+      <div class="record-row">
+        <button id="recordBtn" class="button secondary">● Start recording</button>
+        <span id="recordStatus" class="muted">Microphone is idle</span>
+      </div>
+      <audio id="preview" controls hidden></audio>
+      <button id="transcribeBtn" class="button primary" disabled>Transcribe audio</button>
+      <div id="status" class="status" role="status"></div>
+    </section>
+
+    <section class="panel result-panel" id="resultPanel" hidden>
+      <div class="panel-head"><div><h2>Your transcript</h2><p id="language"></p></div><span class="pill success">Completed</span></div>
+      <textarea id="transcript" rows="9" placeholder="Recognised text appears here..."></textarea>
+      <div class="result-actions">
+        <button class="button secondary" data-export="txt">Download TXT</button>
+        <button class="button secondary" data-export="srt">Download SRT</button>
+        <button class="button secondary" data-export="vtt">Download VTT</button>
+      </div>
+      <h3>Timestamped segments</h3>
+      <div id="segments" class="segments"></div>
+      <p class="footnote">Review the transcript before using it as formal notes. Recognition quality depends on audio clarity, accent and background noise.</p>
+    </section>
+    <footer>LectureScribe · Multilingual Lecture Transcription & Subtitle Generator</footer>
+  </main>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
